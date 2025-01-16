@@ -30,6 +30,10 @@ public class Game {
         this.gameState = GameState.IN_PROGRESS;
     }
 
+    public static Builder getBuilder(){
+        return new Builder();
+    }
+
     public List<Player> getPlayers() {
         return players;
     }
@@ -152,7 +156,7 @@ public class Game {
 
         public Game build() throws PlayerCountException, DuplicateSymbolException, BotCountMOreThanOneException {
             validate();
-            return null;
+            return new Game(dimension, players, winningStrategies);
         }
     }
 }
