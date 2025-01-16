@@ -3,7 +3,7 @@ package tictactoe.models;
 public class Symbol {
     private char  symbol;
 
-    public char getSymbol() {
+    public char getaChar() {
         return symbol;
     }
 
