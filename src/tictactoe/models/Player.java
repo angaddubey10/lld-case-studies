@@ -14,6 +14,7 @@ public class Player {
         this.name = name;
         this.symbol = symbol;
         this.playerType = playerType;
+        this.scanner = new Scanner(System.in);
     }
 
     public Long getId() {
