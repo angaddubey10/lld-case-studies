@@ -1,13 +1,17 @@
 package tictactoe.models;
 
 public class Symbol {
-    private char  symbol;
+    private char aChar;
 
-    public char getaChar() {
-        return symbol;
+    public Symbol(char aChar){
+        this.aChar = aChar;
     }
 
-    public void setSymbol(char symbol) {
-        this.symbol = symbol;
+    public char getaChar() {
+        return aChar;
+    }
+
+    public void setaChar(char aChar) {
+        this.aChar = aChar;
     }
 }
