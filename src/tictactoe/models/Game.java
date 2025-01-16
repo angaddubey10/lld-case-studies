@@ -12,6 +12,7 @@ public class Game {
     private Player winner;
     private int nextPlayerIndex;
     private GameState gameState;
+    private int size;
 
     public List<Player> getPlayers() {
         return players;
