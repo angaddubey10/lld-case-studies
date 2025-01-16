@@ -159,4 +159,45 @@ public class Game {
             return new Game(dimension, players, winningStrategies);
         }
     }
+
+    private boolean validateMove(Move move){
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+        if(row >= board.getSize() || col >= board.getSize()){
+            return false;
+        }
+
+        if(!board.getBoard().get(row).get(col).getCellState().equals(CellState.EMPTY)){
+            return false;
+        }
+
+        return true;
+    }
+
+    public void makeMove(){
+        Player currentMovePlayer = players.get(nextPlayerIndex);
+        System.out.println("It is " + currentMovePlayer.getName() + "'s turn. Please make your move" );
+        Move currentPlayerMove = currentMovePlayer.makeMove();
+        if(!validateMove(currentPlayerMove)){
+            System.out.println("Invalid Move !! Please try again");
+            return;
+        }
+        int row = currentPlayerMove.getCell().getRow();
+        int col = currentPlayerMove.getCell().getCol();
+        Cell cellToChange = board.getBoard().get(row).get(col);
+        cellToChange.setCellState(CellState.FILLED);
+        cellToChange.setPlayer(currentMovePlayer);
+
+        Move finalMoveObject = new Move(cellToChange, currentMovePlayer);
+        moves.add(finalMoveObject);
+
+        nextPlayerIndex += 1;
+        nextPlayerIndex %= players.size();
+
+        if(checkWinner){
+
+        }
+
+
+    }
 }
