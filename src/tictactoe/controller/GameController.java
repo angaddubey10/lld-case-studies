@@ -4,6 +4,7 @@ import tictactoe.exceptions.BotCountMOreThanOneException;
 import tictactoe.exceptions.DuplicateSymbolException;
 import tictactoe.exceptions.PlayerCountException;
 import tictactoe.models.Game;
+import tictactoe.models.GameState;
 import tictactoe.models.Player;
 import tictactoe.strategies.winningStrategies.WinningStrategy;
 
@@ -26,11 +27,11 @@ public class GameController {
     }
 
     public void makeMove(Game game){
-
+        game.makeMove();
     }
 
-    public void checkGameState(Game game){
-
+    public GameState checkGameState(Game game){
+        return game.getGameState();
     }
 
     public void printBoard(Game game){
