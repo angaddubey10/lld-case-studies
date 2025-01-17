@@ -41,4 +41,8 @@ public class GameController {
     public void undo(Game game){
         game.undo();
     }
+
+    public String getWinner(Game game){
+        return game.getWinner().getName();
+    }
 }

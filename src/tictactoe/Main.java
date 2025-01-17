@@ -34,8 +34,9 @@ public class Main {
         winningStrategies.add(new ColWinningStrategy());
         winningStrategies.add(new DiagonalWinningStrategy());
 
+        Game game = null;
         try {
-            Game game = gameController.startGame(
+            game = gameController.startGame(
                     dimensions,
                     players,
                     winningStrategies
@@ -55,6 +56,16 @@ public class Main {
 
         } catch (Exception e) {
             System.out.println(e);
+        }
+
+        gameController.printBoard(game);
+        System.out.println("Game is finished");
+        GameState gameState = gameController.checkGameState(game);
+        if(gameState.equals(GameState.WIN)){
+            System.out.println("Winner is: " + gameController.getWinner(game));
+        }
+        else if(gameState.equals(GameState.DRAW)){
+            System.out.println("Game Drawn");
         }
     }
 }
