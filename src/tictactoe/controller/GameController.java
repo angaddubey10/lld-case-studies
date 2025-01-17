@@ -38,5 +38,7 @@ public class GameController {
          game.printBoard();
     }
 
-
+    public void undo(Game game){
+        game.undo();
+    }
 }

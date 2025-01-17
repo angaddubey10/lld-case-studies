@@ -217,4 +217,27 @@ public class Game {
     public void printBoard(){
         board.printBoard();
     }
+
+    public void undo(){
+        if(moves.isEmpty()){
+            System.out.println("No move to undo");
+            return;
+        }
+
+        Move lastMove = moves.getLast();
+
+        moves.remove(lastMove);
+
+       Cell cell = lastMove.getCell();
+       cell.setPlayer(null);
+       cell.setCellState(CellState.EMPTY);
+
+       for(WinningStrategy winningStrategy: winningStrategies){
+           winningStrategy.handleUndo(board, lastMove);
+       }
+
+       nextPlayerIndex -= 1;
+       nextPlayerIndex = (nextPlayerIndex + players.size()) % players.size();
+
+    }
 }
