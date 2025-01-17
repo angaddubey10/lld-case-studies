@@ -25,5 +25,17 @@ public class GameController {
                 .build();
     }
 
+    public void makeMove(Game game){
+
+    }
+
+    public void checkGameState(Game game){
+
+    }
+
+    public void printBoard(Game game){
+         game.printBoard();
+    }
+
 
 }

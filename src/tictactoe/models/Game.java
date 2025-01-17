@@ -174,6 +174,15 @@ public class Game {
         return true;
     }
 
+    private boolean checkWinner(Board board, Move move){
+        for(WinningStrategy winningStrategy: winningStrategies){
+            if(winningStrategy.checkWinner(board, move)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void makeMove(){
         Player currentMovePlayer = players.get(nextPlayerIndex);
         System.out.println("It is " + currentMovePlayer.getName() + "'s turn. Please make your move" );
@@ -194,10 +203,18 @@ public class Game {
         nextPlayerIndex += 1;
         nextPlayerIndex %= players.size();
 
-//        if(checkWinner){
-//
-//        }
+        if(checkWinner(board, finalMoveObject)){
+            gameState = GameState.WIN;
+            winner = currentMovePlayer;
+        }
+        else if( moves.size() == this.board.getSize() * this.board.getSize()){
+            gameState = GameState.DRAW;
+        }
 
 
+    }
+
+    public void printBoard(){
+        board.printBoard();
     }
 }
