@@ -26,7 +26,7 @@ public class Main {
              new Player(1L, "Rishabh", new Symbol('X'), PlayerType.HUMAN)
         );
         players.add(
-                new Player(2L, "GPT", new Symbol('O'), PlayerType.BOT)
+                new Bot(2L, "GPT", new Symbol('O'), BotDifficultyLevel.EASY)
         );
 
         List<WinningStrategy> winningStrategies = new ArrayList<>();
@@ -47,7 +47,7 @@ public class Main {
             }
 
         } catch (Exception e) {
-            System.out.println("Something went wrong");
+            System.out.println(e);
         }
     }
 }

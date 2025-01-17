@@ -1,4 +1,7 @@
 package tictactoe.models;
 
-public interface BotDifficultyLevel {
+public enum BotDifficultyLevel {
+    EASY,
+    MEDIUM,
+    HARD
 }
