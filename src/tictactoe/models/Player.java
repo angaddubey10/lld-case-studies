@@ -49,7 +49,7 @@ public class Player {
         this.playerType = playerType;
     }
 
-    public Move makeMove(){
+    public Move makeMove(Board board){
         System.out.println("Please enter the row where you want to make the move");
         int row = scanner.nextInt();
 

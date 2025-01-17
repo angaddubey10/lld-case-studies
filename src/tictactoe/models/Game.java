@@ -3,7 +3,7 @@ package tictactoe.models;
 import tictactoe.exceptions.BotCountMOreThanOneException;
 import tictactoe.exceptions.DuplicateSymbolException;
 import tictactoe.exceptions.PlayerCountException;
-import tictactoe.strategies.WinningStrategy;
+import tictactoe.strategies.winningStrategies.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -177,7 +177,7 @@ public class Game {
     public void makeMove(){
         Player currentMovePlayer = players.get(nextPlayerIndex);
         System.out.println("It is " + currentMovePlayer.getName() + "'s turn. Please make your move" );
-        Move currentPlayerMove = currentMovePlayer.makeMove();
+        Move currentPlayerMove = currentMovePlayer.makeMove(board);
         if(!validateMove(currentPlayerMove)){
             System.out.println("Invalid Move !! Please try again");
             return;
@@ -194,9 +194,9 @@ public class Game {
         nextPlayerIndex += 1;
         nextPlayerIndex %= players.size();
 
-        if(checkWinner){
-
-        }
+//        if(checkWinner){
+//
+//        }
 
 
     }

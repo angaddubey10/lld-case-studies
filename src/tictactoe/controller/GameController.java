@@ -5,9 +5,8 @@ import tictactoe.exceptions.DuplicateSymbolException;
 import tictactoe.exceptions.PlayerCountException;
 import tictactoe.models.Game;
 import tictactoe.models.Player;
-import tictactoe.strategies.WinningStrategy;
+import tictactoe.strategies.winningStrategies.WinningStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameController {
