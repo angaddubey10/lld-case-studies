@@ -1,4 +1,4 @@
 package parkinglot.models;
 
-public class GateStatus {
+public enum GateStatus {
 }

@@ -1,4 +1,5 @@
 package parkinglot.models;
 
-public class PaymentStatus {
+public enum PaymentStatus {
+
 }
