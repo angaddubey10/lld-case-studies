@@ -6,6 +6,7 @@ import parkinglot.exceptions.ParkingLotNotFoundException;
 import parkinglot.models.*;
 import parkinglot.repositories.GateRepository;
 import parkinglot.repositories.ParkingLotRepository;
+import parkinglot.repositories.TicketRepository;
 import parkinglot.repositories.VehicleRepository;
 import parkinglot.strategies.slotassignment.SlotAssignmentStrategy;
 import parkinglot.strategies.slotassignment.SlotAssignmentStrategyFactory;
@@ -20,6 +21,7 @@ public class TicketService {
     GateRepository gateRepository;
     VehicleRepository vehicleRepository;
     ParkingLotRepository parkingLotRepository;
+    TicketRepository ticketRepository;
 
     public Ticket issueTicket(VehicleType vehicleType,
                               String vehicleNumber,
@@ -74,6 +76,6 @@ public class TicketService {
 
         ticket.setNumber("TICKET-" + UUID.randomUUID()); // or generate uuid
 
-
+        return ticketRepository.saveTicket(ticket);
     }
 }
