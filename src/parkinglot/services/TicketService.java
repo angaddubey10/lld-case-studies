@@ -7,10 +7,13 @@ import parkinglot.models.*;
 import parkinglot.repositories.GateRepository;
 import parkinglot.repositories.ParkingLotRepository;
 import parkinglot.repositories.VehicleRepository;
+import parkinglot.strategies.slotassignment.SlotAssignmentStrategy;
+import parkinglot.strategies.slotassignment.SlotAssignmentStrategyFactory;
 
 import java.lang.invoke.VarHandle;
 import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 public class TicketService {
 
@@ -63,7 +66,13 @@ public class TicketService {
         else {
             parkingLot = parkingLotOptional.get();
         }
+        SlotAssignmentStrategy slotAssignmentStrategy = SlotAssignmentStrategyFactory.getSlotForType(parkingLot.getSlotAllotmentStrategyType());
 
+        ticket.setParkingSlot(
+             slotAssignmentStrategy.getSlot(gate, savedVehicle.getVehicleType())
+        );
+
+        ticket.setNumber("TICKET-" + UUID.randomUUID()); // or generate uuid
 
 
     }
