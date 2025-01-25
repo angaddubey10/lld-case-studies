@@ -1,8 +1,10 @@
 package parkinglot.services;
 
 import parkinglot.dtos.IssueTicketRequestDto;
+import parkinglot.exceptions.GateNotFoundException;
 import parkinglot.models.Gate;
 import parkinglot.models.Ticket;
+import parkinglot.models.Vehicle;
 import parkinglot.models.VehicleType;
 import parkinglot.repositories.GateRepository;
 
@@ -16,7 +18,7 @@ public class TicketService {
     public Ticket issueTicket(VehicleType vehicleType,
                               String vehicleNumber,
                               String vehicleOwnerName,
-                              Long gateId) {
+                              Long gateId) throws GateNotFoundException {
 
         //Crate a ticket Object
         //Assign a spot
@@ -27,10 +29,17 @@ public class TicketService {
         Ticket ticket = new Ticket();
         ticket.setEntryTime(new Date());
 
-        Optional<Gate> gate = gateRepository.findGateById(gateId);
+        Optional<Gate> gateOp = gateRepository.findGateById(gateId);
 
+        if(!gateOp.isPresent()){
+            throw new GateNotFoundException();
+        }
+        Gate gate = gateOp.get();
+        gate.getGateNumber();
+        ticket.setGate(gate);
+        ticket.setGeneratedBy(gate.getOperator());
 
-        return Op
+        Vehicle vehicle =
 
     }
 }
