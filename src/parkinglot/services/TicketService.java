@@ -7,13 +7,16 @@ import parkinglot.models.Ticket;
 import parkinglot.models.Vehicle;
 import parkinglot.models.VehicleType;
 import parkinglot.repositories.GateRepository;
+import parkinglot.repositories.VehicleRepository;
 
+import java.lang.invoke.VarHandle;
 import java.util.Date;
 import java.util.Optional;
 
 public class TicketService {
 
     GateRepository gateRepository;
+    VehicleRepository vehicleRepository;
 
     public Ticket issueTicket(VehicleType vehicleType,
                               String vehicleNumber,
@@ -29,17 +32,27 @@ public class TicketService {
         Ticket ticket = new Ticket();
         ticket.setEntryTime(new Date());
 
-        Optional<Gate> gateOp = gateRepository.findGateById(gateId);
+        Optional<Gate> gateOptional = gateRepository.findGateById(gateId);
 
-        if(!gateOp.isPresent()){
+        if(!gateOptional.isPresent()){
             throw new GateNotFoundException();
         }
-        Gate gate = gateOp.get();
-        gate.getGateNumber();
+        Gate gate = gateOptional.get();
         ticket.setGate(gate);
         ticket.setGeneratedBy(gate.getOperator());
-
-        Vehicle vehicle =
+        Vehicle savedVehicle;
+        Optional<Vehicle> vehicleOptional = vehicleRepository.getVehicleByNumber(vehicleNumber);
+        if(!vehicleOptional.isPresent()){
+            Vehicle vehicle = new Vehicle();
+            vehicle.setNumber(vehicleNumber);
+            vehicle.setOwnerName(vehicleOwnerName);
+            vehicle.setVehicleType(vehicleType);
+            savedVehicle = vehicleRepository.saveVehicle(vehicle);
+        }
+        else{
+            savedVehicle = vehicleOptional.get();
+        }
+        ticket.setVehicle(savedVehicle);
 
     }
 }
