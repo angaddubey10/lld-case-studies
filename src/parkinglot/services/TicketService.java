@@ -22,6 +22,17 @@ public class TicketService {
     VehicleRepository vehicleRepository;
     ParkingLotRepository parkingLotRepository;
     TicketRepository ticketRepository;
+    public TicketService(
+            GateRepository gateRepository,
+            VehicleRepository vehicleRepository,
+            ParkingLotRepository parkingLotRepository,
+            TicketRepository ticketRepository
+    ){
+        this.gateRepository = gateRepository;
+        this.vehicleRepository = vehicleRepository;
+        this.parkingLotRepository = parkingLotRepository;
+        this.ticketRepository  = ticketRepository;
+    }
 
     public Ticket issueTicket(VehicleType vehicleType,
                               String vehicleNumber,

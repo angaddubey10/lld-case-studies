@@ -10,7 +10,9 @@ import parkinglot.services.TicketService;
 
 public class TicketController {
     private TicketService ticketService;
-
+    public TicketController(TicketService ticketService){
+        this.ticketService = ticketService;
+    }
     public IssueTicketResponseDto issueTicket(IssueTicketRequestDto request){
         IssueTicketResponseDto issueTicketResponseDto = new IssueTicketResponseDto();
         Ticket ticket;
